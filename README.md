@@ -10,4 +10,7 @@
 - 部署：谷歌云
 
 # 线上演示地址：[http://chmpersonal.top/](http://chmpersonal.top/ "http://chmpersonal.top/")
+- 由于没有添加过多数据，只在美食饮品分区下的二哥奶茶店中添加了商品
+- 商家注册和账号注册页面阉割了，后端是实现好的，自行添加即可
+- 商品详情页面在基于SSM的V1.10中没有开发，迁移至SpringBoot后才开发的，这里可以自行补充
 - 商家账号：testusername   密码：newtest

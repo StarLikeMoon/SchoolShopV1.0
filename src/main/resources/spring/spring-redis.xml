@@ -1,0 +1,66 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <!-- Redis连接池的配置 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!-- 控制一个pool可以分配多少个jedis实例 -->
+        <property name="maxTotal" value="${redis.pool.maxActive}" />
+        <!-- 连接池中最多可空闲链接个数，这里取值20，表示即使没有用数据库链接依然保持20个空闲链接 -->
+        <property name="maxIdle" value="${redis.pool.maxIdle}" />
+        <!-- 最大等待时间，当没有可用连接时，连接池等待链接被归还的最大时间ms，超过时间就抛出异常 -->
+        <property name="maxWaitMillis" value="${redis.pool.maxWait}" />
+        <!-- 在获取连接的时候检查链接的有效性 -->
+        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+    </bean>
+
+    <!-- 配置redis连接密码 -->
+    <bean id="redisPassword" class="org.springframework.data.redis.connection.RedisPassword">
+        <constructor-arg name="thePassword" value="${redis.auth}"></constructor-arg>
+    </bean>
+
+    <!-- redis单机配置，地址等在这配置 2.0以上的新特性 -->
+    <bean id="redisStandaloneConfiguration" class="org.springframework.data.redis.connection.RedisStandaloneConfiguration">
+        <property name="hostName" value="${redis.hostname}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="password" ref="redisPassword"/>
+        <property name="database" value="${redis.database}"/>
+    </bean>
+
+    <!--配置jedis链接工厂 spring-data-redis2.0中
+       建议改为构造器传入一个RedisStandaloneConfiguration  单机
+                           RedisSentinelConfiguration  主从复制
+                           RedisClusterConfiguration  集群-->
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <constructor-arg name="standaloneConfig" ref="redisStandaloneConfiguration"></constructor-arg>
+    </bean>
+
+    <!--手动设置 key  与 value的序列化方式-->
+    <!-- 序列化器：能够把我们储存的key与value做序列化处理的对象，是一个类似于converter的工具。
+           可以实现传入的java对象->redis可以识别的数据类型。 如：字符串。
+           默认的Serializer是StringRedisSerializer。
+           设定默认的序列化器是字符串序列化器，原因是redis可以存储的数据只有字符串和字节数组。
+           一般来说，我们代码中操作的数据对象都是java对象。
+           如果代码中，使用的数据载体就是字符串对象，那么使用Jackson2JsonRedisSerializer来做序列化器是否会有问题？
+           如果jackson插件的版本不合适，有错误隐患的话，可能将字符串数据转换为json字符串 -> {chars:[], bytes:[]}
+           使用StringRedisSerializer就没有这个问题。不处理字符串转换的。认为代码中操作的key和value都是字符串。
+        -->
+    <!-- 配置默认的序列化器 -->
+    <!-- keySerializer、valueSerializer 配置Redis中的String类型key与value的序列化器 -->
+    <!-- HashKeySerializer、HashValueSerializer 配置Redis中的Hash类型key与value的序列化器 -->
+    <bean id="keySerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+    <bean id="valueSerializer" class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>
+
+    <!-- 配置jedis模板 -->
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="keySerializer" ref="keySerializer"/>
+        <property name="valueSerializer" ref="valueSerializer"/>
+        <property name="hashKeySerializer" ref="keySerializer"/>
+        <property name="hashValueSerializer" ref="valueSerializer"/>
+    </bean>
+
+</beans>

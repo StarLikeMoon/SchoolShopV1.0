@@ -5,7 +5,7 @@
 - 前端：阿里巴巴SUI MObile前端UI库（已经停止维护）/js
 - 后端：Spring（5.0.2） + SpringMVC（5.0.2） + Mybatis（3.5.4）
 - 数据库与缓存：MySQL（5.5）/Redis（5.0.8）
-- 其他组件：Json数据处理框架jackson（2.11.0）/图片处理工具thumbnailator（0.4.11）/验证码工具包kaptcha（2.3.2）
+- 其他组件：Json数据处理框架jackson（2.11.0）/图片处理工具thumbnailator（0.4.11）/验证码工具包kaptcha（2.3.2）/日志记录工具logback（1.2.3）
 - redis相关组件：Jedis（2.9.0）/spring-data-redis（2.1.9）
 - 部署：谷歌云
 

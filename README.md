@@ -2,7 +2,7 @@
 - 参加2019校创新创业大赛的项目作品，这是初版作品，基于SMM框架，主要完成了店铺、商品的管理与添加，首页展示模块的功能。适合个人练手以及熟悉组件技术之用。
 
 # 主要技术栈及使用版本
-- 前端：阿里巴巴SUI MObile前端UI库（已经停止维护）/js
+- 前端：阿里巴巴SUI MObile前端UI库（[https://sui.ctolog.com/](https://sui.ctolog.com/ "https://sui.ctolog.com/")）/js
 - 后端：Spring（5.0.2） + SpringMVC（5.0.2） + Mybatis（3.5.4）
 - 数据库与缓存：MySQL（5.5）/Redis（5.0.8）
 - 其他组件：Json数据处理框架jackson（2.11.0）/图片处理工具thumbnailator（0.4.11）/验证码工具包kaptcha（2.3.2）/日志记录工具logback（1.2.3）

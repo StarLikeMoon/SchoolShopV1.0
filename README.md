@@ -11,7 +11,16 @@
 - 部署：谷歌云
 
 # 线上演示地址：[http://chmpersonal.top/](http://chmpersonal.top/ "http://chmpersonal.top/")
+- 请不要随意修改演示地址数据，感谢配合
 - 由于没有添加过多数据，只在美食饮品分区下的二哥奶茶店中添加了商品
 - 商家注册和账号注册页面阉割了，后端是实现好的，自行添加即可
 - 商品详情页面在基于SSM的V1.10中没有开发，迁移至SpringBoot后才开发的，这里可以自行补充
 - 商家账号：testusername   密码：newtest
+
+
+#QuickStart
+- 数据库建库恢复o2oshop.sql数据
+- 进入/src/main/java/cn/chm/o2o/util/PathUtil.java，修改getImgBasePath()方法中图片存放目录地址为你自己的地址
+- 修改/src/main/resources/jdbc.properties中的数据库链接地址和用户名密码为你自己的数据库
+- IDEA导入项目，部署，编译，开始访问吧
+- 首页地址：XXXX/frontend/index

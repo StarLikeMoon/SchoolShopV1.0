@@ -18,7 +18,7 @@
 - 商家账号：testusername   密码：newtest
 
 
-#QuickStart
+# QuickStart
 - 数据库建库恢复o2oshop.sql数据
 - 进入/src/main/java/cn/chm/o2o/util/PathUtil.java，修改getImgBasePath()方法中图片存放目录地址为你自己的地址
 - 修改/src/main/resources/jdbc.properties中的数据库链接地址和用户名密码为你自己的数据库

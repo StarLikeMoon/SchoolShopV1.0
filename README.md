@@ -10,7 +10,7 @@
 - 单元测试：Junit
 - 部署：谷歌云
 
-# 线上演示地址（谷歌云可能被墙，被墙请留言）：[http://chmpersonal.top/](http://chmpersonal.top/ "http://chmpersonal.top/")
+# 线上演示地址（服务期到期停机了）：[http://chmpersonal.top/](http://chmpersonal.top/ "http://chmpersonal.top/")
 - 由于SUI属于H5移动端布局，使用浏览器的移动端模拟更好看一些
 - 请不要随意修改演示地址数据，感谢配合
 - 由于没有添加过多数据，只在美食饮品分区下的二哥奶茶店中添加了商品
